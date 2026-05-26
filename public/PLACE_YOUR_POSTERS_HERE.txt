@@ -1,0 +1,5 @@
+Please place your poster image files in this 'public' directory:
+- Drop or upload the draft poster image here and name it 'poster_draft.jpg' or 'poster_draft.png'
+- Drop or upload the final poster image here and name it 'poster_final.jpg' or 'poster_final.png'
+
+The website is already fully configured to display these images automatically once they are uploaded here!

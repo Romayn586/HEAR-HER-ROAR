@@ -1,0 +1,8 @@
+{
+  "name": "Hear Her Roar Portfolio",
+  "description": "An interactive portfolio and comprehensive database evaluating the event coordination, budgets, and marketing strategy behind Leeds' female-led charity indie gig, Hear Her Roar.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
