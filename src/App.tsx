@@ -8,7 +8,6 @@ import Timeline from './components/Timeline';
 import PosterEvolution from './components/PosterEvolution';
 import MarketingSponsors from './components/MarketingSponsors';
 import MediaGallery from './components/MediaGallery';
-import Reflection from './components/Reflection';
 import Contact from './components/Contact';
 
 export default function App() {
@@ -21,13 +20,13 @@ export default function App() {
       const scrolled = window.scrollY;
       const sections = [
         { id: 'hero-section', name: 'home' },
-        { id: 'about', name: 'ideology' },
-        { id: 'metrics', name: 'metrics' },
         { id: 'line-up', name: 'performers' },
         { id: 'poster-evolution', name: 'visuals' },
-        { id: 'timeline', name: 'timeline' },
+        { id: 'gallery', name: 'gallery' },
+        { id: 'about', name: 'ideology' },
+        { id: 'metrics', name: 'metrics' },
         { id: 'marketing-and-sponsors', name: 'marketing' },
-        { id: 'reflection', name: 'evaluations' }
+        { id: 'timeline', name: 'timeline' }
       ];
 
       for (const section of sections) {
@@ -57,13 +56,13 @@ export default function App() {
 
   const navLinks = [
     { label: '项目首页', section: 'hero-section', segment: 'home' },
-    { label: '核心内核', section: 'about', segment: 'ideology' },
-    { label: '数字成果', section: 'metrics', segment: 'metrics' },
     { label: '演出阵容', section: 'line-up', segment: 'performers' },
     { label: '宣传视觉', section: 'poster-evolution', segment: 'visuals' },
-    { label: '推进时间轴', section: 'timeline', segment: 'timeline' },
+    { label: '现场纪实', section: 'gallery', segment: 'gallery' },
+    { label: '核心内核', section: 'about', segment: 'ideology' },
+    { label: '数字成果', section: 'metrics', segment: 'metrics' },
     { label: '营销赞助', section: 'marketing-and-sponsors', segment: 'marketing' },
-    { label: '学术总结', section: 'reflection', segment: 'evaluations' }
+    { label: '推进时间轴', section: 'timeline', segment: 'timeline' }
   ];
 
   return (
@@ -173,14 +172,13 @@ export default function App() {
       {/* 4. Sequential Portfolio Sheets Sections */}
       <main className="relative pt-4 text-left">
         <Hero onNavigateToSection={navigateToSection} />
-        <About />
-        <Metrics />
         <ArtistLineup />
         <PosterEvolution />
-        <Timeline />
-        <MarketingSponsors />
         <MediaGallery />
-        <Reflection />
+        <About />
+        <Metrics />
+        <MarketingSponsors />
+        <Timeline />
       </main>
 
       {/* 5. Minimalist sleed contact footer */}

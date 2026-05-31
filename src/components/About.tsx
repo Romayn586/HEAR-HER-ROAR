@@ -94,9 +94,9 @@ export default function About() {
               <span>PROJECT RIGOR</span>
               <span className="text-[10px] text-neutral-500 font-normal">04</span>
             </h3>
-            <div className="text-xs font-semibold text-emerald-400/80 mb-3 font-mono">商业项目管理履历调性</div>
+            <div className="text-xs font-semibold text-emerald-400/80 mb-3 font-mono">项目管理与实践成果展示</div>
             <p className="text-neutral-400 text-xs leading-relaxed">
-              这里摒弃了流于泛泛的课程流水账，而是作为一个可以被深度验证的实操成果集。在这里您不仅能审判公对公转入资金记录，还能审阅设计商业 PPT 赞助大纲、多维渠道新媒体推广指数和全方位的会后项目运营反思，最大化验证音乐产业高端人才的就业资质。
+              这个网站不仅记录了 Hear Her Roar 的策划与执行过程，更展示了项目从构想到落地的完整实践。您可以在这里看到项目预算与资金记录、赞助合作方案、宣传推广内容、社交媒体运营成果，以及活动结束后的总结与反思，全方位了解项目的实际运作过程和我的工作成果。
             </p>
           </div>
 

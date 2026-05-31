@@ -2,16 +2,85 @@ import { useState, useEffect } from 'react';
 import { Music, FileText, ChevronDown, Check, Users } from 'lucide-react';
 import { artists } from '../data/portfolioData';
 
+interface MemberAvatarProps {
+  name: string;
+  role: string;
+  avatarUrl?: string;
+}
+
+const MEMBER_FALLBACKS: Record<string, string> = {
+  'Hannah': 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&h=300&q=80',
+  'Irene': 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&h=300&q=80',
+  'Eloise': 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&h=300&q=80',
+  'Lucas': 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=300&h=300&q=80',
+  'Tilly': 'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=300&h=300&q=80'
+};
+
+function MemberAvatar({ name, role, avatarUrl }: MemberAvatarProps) {
+  const fallbackUrl = MEMBER_FALLBACKS[name] || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&h=300&q=80';
+  const [src, setSrc] = useState<string>(avatarUrl || fallbackUrl);
+  const [errorCount, setErrorCount] = useState<number>(0);
+
+  useEffect(() => {
+    setSrc(avatarUrl || fallbackUrl);
+    setErrorCount(0);
+  }, [avatarUrl, fallbackUrl]);
+
+  const handleError = () => {
+    if (errorCount === 0 && avatarUrl) {
+      const baseNoExt = avatarUrl.substring(0, avatarUrl.lastIndexOf('.'));
+      if (avatarUrl.endsWith('.jpg')) {
+        setSrc(`${baseNoExt}.png`);
+        setErrorCount(1);
+      } else if (avatarUrl.endsWith('.png')) {
+        setSrc(`${baseNoExt}.jpeg`);
+        setErrorCount(2);
+      } else if (avatarUrl.endsWith('.jpeg')) {
+        setSrc(`${baseNoExt}.webp`);
+        setErrorCount(3);
+      } else {
+        setSrc(fallbackUrl);
+        setErrorCount(4);
+      }
+    } else if (errorCount === 1 && avatarUrl) {
+      const baseNoExt = avatarUrl.substring(0, avatarUrl.lastIndexOf('.'));
+      setSrc(`${baseNoExt}.jpeg`);
+      setErrorCount(2);
+    } else if (errorCount === 2 && avatarUrl) {
+      const baseNoExt = avatarUrl.substring(0, avatarUrl.lastIndexOf('.'));
+      setSrc(`${baseNoExt}.webp`);
+      setErrorCount(3);
+    } else {
+      setSrc(fallbackUrl);
+      setErrorCount(4);
+    }
+  };
+
+  return (
+    <img
+      src={src || null}
+      alt={`${name} - ${role}`}
+      className="w-12 h-12 rounded-full object-cover shrink-0 border border-neutral-800 group-hover:border-neon-pink/40 transition-all duration-300 shadow-md"
+      onError={handleError}
+      referrerPolicy="no-referrer"
+    />
+  );
+}
+
 export default function ArtistLineup() {
   const [expandedArtistId, setExpandedArtistId] = useState<string>('blue-not-rue');
   const [activeTab, setActiveTab] = useState<'bio' | 'setlist' | 'contract'>('bio');
 
   const [posterSrc, setPosterSrc] = useState<string>('/poster_blue-not-rue.jpg');
   const [posterError, setPosterError] = useState<boolean>(false);
+  const [setlistSrc, setSetlistSrc] = useState<string>('');
+  const [setlistError, setSetlistError] = useState<boolean>(false);
 
   useEffect(() => {
     setPosterSrc(`/poster_${expandedArtistId}.jpg`);
     setPosterError(false);
+    setSetlistSrc(`/setlist_${expandedArtistId}.jpg`);
+    setSetlistError(false);
   }, [expandedArtistId]);
 
   const handlePosterError = () => {
@@ -23,6 +92,18 @@ export default function ArtistLineup() {
       setPosterSrc(`/poster_${expandedArtistId}.webp`);
     } else {
       setPosterError(true);
+    }
+  };
+
+  const handleSetlistError = () => {
+    if (setlistSrc === `/setlist_${expandedArtistId}.jpg`) {
+      setSetlistSrc(`/setlist_${expandedArtistId}.png`);
+    } else if (setlistSrc === `/setlist_${expandedArtistId}.png`) {
+      setSetlistSrc(`/setlist_${expandedArtistId}.jpeg`);
+    } else if (setlistSrc === `/setlist_${expandedArtistId}.jpeg`) {
+      setSetlistSrc(`/setlist_${expandedArtistId}.webp`);
+    } else {
+      setSetlistError(true);
     }
   };
 
@@ -114,8 +195,8 @@ export default function ArtistLineup() {
             {/* Split layout inside the Active Sheet */}
             <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
               
-              {/* Left Column: Core content, Tabs & Details (xl:col-span-8) */}
-              <div className="xl:col-span-8 flex flex-col">
+              {/* Left Column: Core content, Tabs & Details */}
+              <div className={`${((selectedArtist.id === 'baby-blue' || selectedArtist.id === 'blue-not-rue') && activeTab !== 'bio') ? 'xl:col-span-12' : 'xl:col-span-8'} flex flex-col`}>
                 {/* Inner selectors tabs */}
                 <div className="flex border-b border-neutral-800 gap-4 mb-6">
                   <button
@@ -124,7 +205,7 @@ export default function ArtistLineup() {
                       activeTab === 'bio' ? 'border-neon-pink text-white font-bold' : 'border-transparent text-neutral-400 hover:text-white'
                     }`}
                   >
-                    1. 艺人生平与成员
+                    1. 艺人简介
                   </button>
                   <button
                     onClick={() => setActiveTab('setlist')}
@@ -157,7 +238,7 @@ export default function ArtistLineup() {
                       {selectedArtist.quoteSelection}
                     </div>
 
-                    {selectedArtist.members && (
+                    {selectedArtist.members && selectedArtist.id !== 'runa' && (
                       <div>
                         <h4 className="text-xs font-mono text-neutral-500 uppercase tracking-widest mb-3 font-semibold flex items-center gap-1.5">
                           <Users className="w-4 h-4 text-neon-pink" />
@@ -165,12 +246,19 @@ export default function ArtistLineup() {
                         </h4>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           {selectedArtist.members.map((member, i) => (
-                            <div key={i} className="p-4 bg-[#121215] border border-neutral-900 text-left">
-                              <div className="flex justify-between font-mono text-xs font-bold text-white mb-1">
-                                <span>{member.name}</span>
-                                <span className="text-neon-pink">{member.role}</span>
+                            <div key={i} className="p-4 bg-[#121215]/60 hover:bg-[#121215] border border-neutral-900 hover:border-neutral-800/80 text-left flex gap-4 items-center rounded transition-all duration-300 group">
+                              <MemberAvatar
+                                name={member.name}
+                                role={member.role}
+                                avatarUrl={member.avatar}
+                              />
+                              <div className="flex-1 min-w-0">
+                                <div className="flex justify-between font-mono text-xs font-bold text-white mb-1">
+                                  <span className="truncate">{member.name}</span>
+                                  <span className="text-neon-pink shrink-0 group-hover:text-white transition-colors duration-200">{member.role}</span>
+                                </div>
+                                <p className="text-[11px] text-[#9999a1] font-sans leading-relaxed line-clamp-2">{member.bio}</p>
                               </div>
-                              <p className="text-[11px] text-neutral-500 font-sans leading-tight">{member.bio}</p>
                             </div>
                           ))}
                         </div>
@@ -181,20 +269,54 @@ export default function ArtistLineup() {
 
                 {activeTab === 'setlist' && (
                   <div className="flex flex-col gap-4">
-                    <h4 className="text-xs font-mono text-neutral-500 uppercase tracking-widest mb-1 font-semibold">当晚现场敲定曲目轨道</h4>
-                    <div className="flex flex-col gap-3">
-                      {selectedArtist.setlist.map((track, i) => (
-                        <div key={i} className="p-4 bg-[#0a0a0c] border border-neutral-900 flex gap-4 items-start hover:border-white/5 transition-all text-left">
-                          <div className="w-6 h-6 rounded-full bg-neutral-900 text-[10px] text-neutral-400 font-mono border border-neutral-800 flex items-center justify-center shrink-0">
-                            {i + 1}
+                    <h4 className="text-xs font-mono text-neutral-500 uppercase tracking-widest mb-1 font-semibold">
+                      {(selectedArtist.id === 'baby-blue' || selectedArtist.id === 'blue-not-rue') ? '当晚演出歌单图片 / SETLIST IMAGE' : '当晚现场敲定曲目轨道'}
+                    </h4>
+                    {(selectedArtist.id === 'baby-blue' || selectedArtist.id === 'blue-not-rue') ? (
+                      <div className="border border-neutral-800 bg-[#0a0a0c] p-2 flex flex-col justify-center items-center overflow-hidden rounded relative max-w-md mx-auto xl:mx-0 min-h-[300px]">
+                        {!setlistError ? (
+                          <img 
+                            src={setlistSrc || null} 
+                            alt={`${selectedArtist.name} 歌单现场海报`}
+                            className="w-full h-auto object-contain rounded max-h-[500px]"
+                            onError={handleSetlistError}
+                            referrerPolicy="no-referrer"
+                          />
+                        ) : (
+                          <div className="p-6 text-center flex flex-col justify-center items-center max-w-xs">
+                            <div className="w-12 h-12 rounded-full bg-neon-pink/10 border border-neon-pink/20 flex items-center justify-center mb-4 text-neon-pink">
+                              <Music className="w-6 h-6 animate-pulse" />
+                            </div>
+                            <h4 className="text-sm font-bold text-white mb-2 uppercase font-mono tracking-wide">歌单图待上传 / PENDING UPLOAD</h4>
+                            <p className="text-neutral-400 text-xs font-sans leading-relaxed">
+                              歌单图片（<code className="text-neon-pink font-mono bg-black/60 px-1 py-0.5 rounded">/public/setlist_{selectedArtist.id}.jpg</code>）还未上传。
+                            </p>
+                            <p className="text-neutral-500 text-[10px] font-sans leading-relaxed mt-2">
+                              一旦您在左侧文件栏上传了该图片，此处将自动完美呈现。
+                            </p>
                           </div>
-                          <div className="flex flex-col gap-1">
-                            <span className="text-sm font-bold text-white uppercase italic">{track.title}</span>
-                            <span className="text-xs text-neutral-400 font-sans leading-relaxed">{track.desc}</span>
+                        )}
+                        {!setlistError && (
+                          <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2 py-0.5 text-[8px] font-mono text-neon-pink select-none uppercase tracking-wider">
+                            EXCLUSIVE SETLIST
                           </div>
-                        </div>
-                      ))}
-                    </div>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="flex flex-col gap-3">
+                        {selectedArtist.setlist.map((track, i) => (
+                          <div key={i} className="p-4 bg-[#0a0a0c] border border-neutral-900 flex gap-4 items-start hover:border-white/5 transition-all text-left">
+                            <div className="w-6 h-6 rounded-full bg-neutral-900 text-[10px] text-neutral-400 font-mono border border-neutral-800 flex items-center justify-center shrink-0">
+                              {i + 1}
+                            </div>
+                            <div className="flex flex-col gap-1">
+                              <span className="text-sm font-bold text-white uppercase italic">{track.title}</span>
+                              <span className="text-xs text-neutral-400 font-sans leading-relaxed">{track.desc}</span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 )}
 
@@ -260,57 +382,59 @@ export default function ArtistLineup() {
               </div>
 
               {/* Right Column: Artist Poster & Verification Frame */}
-              <div className="xl:col-span-4 flex flex-col gap-4">
-                <span className="text-[10px] font-mono text-neutral-400 uppercase tracking-widest block text-left">艺人专题海报 / ART_POSTER</span>
-                
-                <div className="relative aspect-[3/4] bg-[#121215] border border-neutral-800 flex flex-col justify-between overflow-hidden shadow-lg rounded">
-                  {!posterError && posterSrc ? (
-                    <img 
-                      src={posterSrc} 
-                      alt={`${selectedArtist.name} 专属海报`}
-                      className="w-full h-full object-cover select-none animate-fade-in"
-                      onError={handlePosterError}
-                      referrerPolicy="no-referrer"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 p-5 flex flex-col justify-between text-left bg-[#0c0c0e]">
-                      <div>
-                        <div className="w-8 h-8 rounded-full bg-neon-pink/10 border border-neon-pink/20 flex items-center justify-center mb-3">
-                          <Music className="w-4 h-4 text-neon-pink" />
-                        </div>
-                        <h4 className="text-xs font-black text-white uppercase tracking-tight">{selectedArtist.name}</h4>
-                        <p className="text-[9px] text-[#ff007f] font-mono mb-3">EXCLUSIVE DESIGN</p>
-                        
-                        <p className="text-[10px] text-neutral-400 font-sans leading-relaxed">
-                          图片未检测到。请在左侧文件栏 
-                          <code className="text-neon-pink bg-neutral-950 px-1 py-0.5 font-mono ml-1">/public/</code> 
-                          目录下，点击上传或拖入名为:
-                          <code className="text-neon-pink font-mono block mt-1 p-1 bg-black border border-white/5 rounded-xs text-[9px]">
-                            poster_{selectedArtist.id}.jpg
-                          </code>
-                          或 <code className="text-neon-pink font-mono">poster_{selectedArtist.id}.png / .webp</code> 的专属艺人海报。
-                        </p>
-                      </div>
-
-                      <div className="border-t border-white/5 pt-2 mt-2 text-[8px] font-mono text-neutral-600 flex justify-between">
-                        <span>{selectedArtist.genre.split(' / ')[0]}</span>
-                        <span>{selectedArtist.origin}</span>
-                      </div>
-                    </div>
-                  )}
+              {!((selectedArtist.id === 'baby-blue' || selectedArtist.id === 'blue-not-rue') && activeTab !== 'bio') && (
+                <div className="xl:col-span-4 flex flex-col gap-4">
+                  <span className="text-[10px] font-mono text-neutral-400 uppercase tracking-widest block text-left">艺人专题海报 / ART_POSTER</span>
                   
-                  {/* Glowing Overlay Indicator */}
-                  {!posterError && (
-                    <div className="absolute top-2.5 right-2.5 bg-black/80 border border-white/10 px-1.5 py-0.5 text-[7px] font-mono text-neon-pink select-none tracking-wider uppercase">
-                      LOCKED / {selectedArtist.id.toUpperCase()}
-                    </div>
-                  )}
+                  <div className="relative aspect-[3/4] bg-[#121215] border border-neutral-800 flex flex-col justify-between overflow-hidden shadow-lg rounded">
+                    {!posterError && posterSrc ? (
+                      <img 
+                        src={posterSrc || null} 
+                        alt={`${selectedArtist.name} 专属海报`}
+                        className="w-full h-full object-cover select-none animate-fade-in"
+                        onError={handlePosterError}
+                        referrerPolicy="no-referrer"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 p-5 flex flex-col justify-between text-left bg-[#0c0c0e]">
+                        <div>
+                          <div className="w-8 h-8 rounded-full bg-neon-pink/10 border border-neon-pink/20 flex items-center justify-center mb-3">
+                            <Music className="w-4 h-4 text-neon-pink" />
+                          </div>
+                          <h4 className="text-xs font-black text-white uppercase tracking-tight">{selectedArtist.name}</h4>
+                          <p className="text-[9px] text-[#ff007f] font-mono mb-3">EXCLUSIVE DESIGN</p>
+                          
+                          <p className="text-[10px] text-neutral-400 font-sans leading-relaxed">
+                            图片未检测到。请在左侧文件栏 
+                            <code className="text-neon-pink bg-neutral-950 px-1 py-0.5 font-mono ml-1">/public/</code> 
+                            目录下，点击上传或拖入名为:
+                            <code className="text-neon-pink font-mono block mt-1 p-1 bg-black border border-white/5 rounded-xs text-[9px]">
+                              poster_{selectedArtist.id}.jpg
+                            </code>
+                            或 <code className="text-neon-pink font-mono">poster_{selectedArtist.id}.png / .webp</code> 的专属艺人海报。
+                          </p>
+                        </div>
+
+                        <div className="border-t border-white/5 pt-2 mt-2 text-[8px] font-mono text-neutral-600 flex justify-between">
+                          <span>{selectedArtist.genre.split(' / ')[0]}</span>
+                          <span>{selectedArtist.origin}</span>
+                        </div>
+                      </div>
+                    )}
+                    
+                    {/* Glowing Overlay Indicator */}
+                    {!posterError && (
+                      <div className="absolute top-2.5 right-2.5 bg-black/80 border border-white/10 px-1.5 py-0.5 text-[7px] font-mono text-neon-pink select-none tracking-wider uppercase">
+                        LOCKED / {selectedArtist.id.toUpperCase()}
+                      </div>
+                    )}
+                  </div>
+                  
+                  <p className="text-[9px] text-neutral-500 font-sans leading-relaxed text-left">
+                    注：每幅艺人海报均由官方设计团队依据其学理曲目情感精心订制，可拖入自定义图片完成线上预览切换。
+                  </p>
                 </div>
-                
-                <p className="text-[9px] text-neutral-500 font-sans leading-relaxed text-left">
-                  注：每幅艺人海报均由官方设计团队依据其学理曲目情感精心订制，可拖入自定义图片完成线上预览切换。
-                </p>
-              </div>
+              )}
 
             </div>
 

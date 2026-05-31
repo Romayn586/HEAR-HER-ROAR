@@ -210,9 +210,9 @@ export default function Metrics() {
               <div className="lg:col-span-4 flex flex-col gap-6 text-left">
                 <div className="border border-white/5 bg-[#000] p-6">
                   <span className="text-[10px] font-mono text-neon-pink uppercase font-bold">资金周转深度分析</span>
-                  <h4 className="text-sm font-semibold text-white mt-1 mb-3">极高的运营结余比率</h4>
+                  <h4 className="text-sm font-semibold text-white mt-1 mb-3">成本控制与资金管理</h4>
                   <p className="text-neutral-400 text-xs leading-relaxed">
-                    由于对固定开销执行了自律刚性约束——成功买断了专业视觉插画海报版权（仅支付一次性费用 £100），并向母校音乐系借调了高保真爵士鼓设备，使得核心制作成本被死死压制在总票房进账款的 **32.4%** 绝佳水位内。
+                    项目在保证活动质量的前提下，有效控制了整体开支。通过一次性购买海报设计版权，以及向利兹大学音乐学院借用演出设备，我们大幅降低了制作成本。最终，总成本仅占总收入的约 32%，使项目实现了良好的资金利用效率，并为公益捐赠保留了更多资金。
                   </p>
                 </div>
                 
@@ -220,7 +220,7 @@ export default function Metrics() {
                   <span className="text-[10px] font-mono text-emerald-400 uppercase font-bold">慈善流转高效率</span>
                   <h4 className="text-sm font-semibold text-white mt-1 mb-3">真正的文创社会化载体</h4>
                   <p className="text-neutral-400 text-xs leading-relaxed">
-                    最终汇聚的项目纯结余溢价达到 **£676.09**。借由此款，我们向 Getaway Girls Leeds 女性帮扶慈善会转出了厚实的 **£270.44**，圆满践行了学术研究与赋能边缘化生命体的完美自洽。
+                    活动最终实现净利润 £676.09。根据项目规划，我们将其中 £270.44 捐赠给了利兹本地慈善机构 Getaway Girls，圆满践行了学术研究与赋能边缘化生命体的完美自洽。
                   </p>
                 </div>
               </div>

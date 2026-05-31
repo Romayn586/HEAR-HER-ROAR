@@ -7,15 +7,15 @@ export const artists: Artist[] = [
     type: '独唱歌手',
     origin: 'China / London',
     genre: '巴萨诺瓦 (Bossa Nova) / 迪斯科 (Disco) / 放克 (Funk) / R&B / 爵士 (Jazz)',
-    bio: '嗨项目，我是 Baby Blue——一位来自中国的创作歌手，目前在伦敦生活和创作。我热衷于谱写旋律，将情感转化为声音是我与世界对话的方式。我的音乐融合了巴萨诺瓦的温柔、迪斯科和放克的律动，以及 R&B 和爵士的温暖。作为一名女性艺术家，我相信脆弱与坚韧并存的力量。通过这次演出，我希望能向所有敢于同时展现力量、温柔与细腻的女性致敬。',
+    bio: '嗨，我是 Baby Blue——一位来自中国的创作歌手，目前在伦敦生活和创作。我热衷于谱写旋律，将情感转化为声音是我与世界对话的方式。我的音乐融合了巴萨诺瓦的温柔、迪斯科和放克的律动，以及 R&B 和爵士的温暖。作为一名女性艺术家，我相信脆弱与坚韧并存的力量。通过这次演出，我希望能向所有敢于同时展现力量、温柔与细腻的女性致敬。',
     quoteSelection: '“脆弱并非软弱；它是创造力最极致的表达。”',
+    members: [
+      { name: 'Baby Blue', role: '主唱 / 键盘手 / 创作人', bio: '来自中国的唱作歌手，目前在伦敦生活和创作。精通木吉他与电子琴，以细腻唯温婉的唱腔见长。', avatar: '/poster_baby-blue.jpg' }
+    ],
     setlist: [
       { title: 'Let There Be Love (原创)', desc: '一首送给自己的温柔道歉，提醒自己即使在迷茫时也要好好爱自己。' },
       { title: 'Blue Waves (原创)', desc: '一首关于释怀与放手的歌——不再执着，随风而去。' },
-      { title: 'After 17 (翻唱 - 原唱：陈绮贞)', desc: '一首呼应成长并回望过去的苦甜交织的歌。' },
-      { title: '倔强 Stubborn (翻唱 - 原唱：五月天)', desc: '当世界将你击倒时，这首歌给你重新站起来的勇气。' },
-      { title: '二十二 Twenty-Two (翻唱 - 原唱：陶喆)', desc: '一首陪伴在成长道路上曾感到迷茫的每个人的歌。' },
-      { title: 'Only 23 (翻唱 - 原唱：方大同)', desc: '温柔、释怀并且真实。' }
+      { title: 'I Love You More (原创)', desc: '融合波萨诺瓦吉他与浪漫旋律，向每个有爱的心灵传递温暖意象。' }
     ],
     posterTitle: 'Baby Blue 个人海报'
   },
@@ -25,20 +25,17 @@ export const artists: Artist[] = [
     type: '乐队',
     origin: 'Leeds, UK',
     genre: '独立摇滚 (Indie Rock) / 替代摇滚 (Alternative Rock) / 暴女朋克 (Punk Grrrl)',
-    bio: 'Blue Not Rue 是一支来自 Leeds 的独立摇滚乐队，深受替代摇滚风格影响。乐队由主唱、吉他手、贝斯手、键盘手和鼓手五位充满激情的女性艺术家组成，擅长以充满张力的表演带来深沉律动和原始能量。通过坦率而狂野的音乐表达，她们旨在展现独立音乐人、尤其是女性艺术家的蓬勃生机和力量。在这次演出中，她们希望能用动感律动引起观众的共鸣。',
+    bio: 'Blue Not Rue 是一支来自 Leeds 的独立摇滚乐队，深受替代摇滚风格影响。乐队由主唱、吉他手、贝斯手、键盘手和鼓手五位充满激情的女性艺术家组成，擅长以充满张力的表演带来深沉律动和原始能量。通过坦率而狂野 of 音乐表达，她们旨在展现独立音乐人、尤其是女性艺术家的蓬勃生机和力量。在这次演出中，她们希望能用动感律动引起观众的共鸣。',
     quoteSelection: '“五个女孩，五种声音，筑起一堵坚韧的声墙。真实的音乐，纯粹的力量。”',
     members: [
-      { name: 'Hannah', role: '主唱', bio: '带来纯真情感、极具掌控力的舞台张力以及充满爆发力的嗓音。' },
-      { name: 'Irene', role: '吉他手', bio: '编织复杂的吉他独奏和扎实的独立摇滚乐段。' },
-      { name: 'Eloise', role: '贝斯手', bio: '乐队的心脏，提供沉重、温暖且沉稳的低音线条。' },
-      { name: 'Lucas', role: '键盘手', bio: '注入极富氛围感的旋律和具有古典色彩的合成器织体。' },
-      { name: 'Tilly', role: '鼓手', bio: '以无懈可击、极具活力的节奏掌控着全场的超高律动。' }
+      { name: 'Hannah', role: '主唱', bio: '带来纯真情感、极具掌控力的舞台张力以及充满爆发力的嗓音。', avatar: '/avatar_hannah.jpg' },
+      { name: 'Irene', role: '吉他手', bio: '编织复杂的吉他独奏和扎实的独立摇滚律动。', avatar: '/avatar_irene.jpg' },
+      { name: 'Eloise', role: '贝斯手', bio: '带来沉稳如磐石般的低音铺垫与充满灵性的切分律动。', avatar: '/avatar_eloise.jpg' },
+      { name: 'Tilly', role: '键盘手', bio: '点缀变幻莫测的复古电声织体、合成器音色与和声支持。', avatar: '/avatar_tilly.jpg' },
+      { name: 'Lucas', role: '鼓手', bio: '精准把控全场节奏呼吸，以充满力量的重击注入摇滚之魂。', avatar: '/avatar_lucas.jpg' }
     ],
     setlist: [
-      { title: 'Ship to Wreck', desc: '原唱：Florence + The Machine。探索女性经验中的复杂性与挣扎张力。' },
-      { title: 'Good Fortune', desc: '原唱：PJ Harvey。女性赋权与先锋力量的颂歌。' },
-      { title: 'Crushcrushcrush', desc: '原唱：Paramore。展现纯粹的女性摇滚能量与舞台掌控。' },
-      { title: 'Sidewalk Safari', desc: '原唱：Chairlift。对现代都市女性身份的独特替代视角。' },
+      { title: 'Bruises', desc: '原唱：Chairlift。对现代都市女性身份的独特替代视角。' },
       { title: 'Don’t Wake Me Up', desc: '原唱：The Hush Sound。一首梦幻且忧郁的曲子，探索停留在内部安全空间的渴望。' },
       { title: 'Duvet', desc: '原唱：bôa。对现代女性特质的含蓄而深情的表达。' }
     ],
@@ -52,10 +49,13 @@ export const artists: Artist[] = [
     genre: '深情民谣摇滚 (Soulful Folk-Rock) / 融合世界音乐 (World Music Influence)',
     bio: 'Katerina 是一 位活跃于 UK 的充满激情的音乐人，在创作、街头漫唱和现场表演中不断探索。她深情动人的嗓音与极具节奏感的吉他交织在一起，既能抚慰心灵，也能让人随之律动，创造出融合了灵魂乐、民谣摇滚和世界音乐元素的独特乐音。深受 Madison Cunningham、Izzy Ray 和 Bonnie Raitt 等艺术家的启发。Katerina 曾登上 Headrow House、Forty Five Vinyl Cafe 和 HEART Centre 等多个舞台，她全心全意地用音乐分享真实自我，期盼能与每个人连接。',
     quoteSelection: '“音乐不仅是在歌唱——它通过声音表达，在寻找心灵的联结。”',
+    members: [
+      { name: 'Katerina E.', role: '主唱 / 主音吉他手', bio: '深情民谣摇滚独奏家。擅长灵巧的指弹吉他，带来极具渗透力和叙事张力的厚重女声力量。', avatar: '/poster_katerina.jpg' }
+    ],
     setlist: [
       { title: 'Shadow Walk (原创)', desc: '一首充满氛围感、温婉而动人的民谣摇滚，讲述走向光明的历程。' },
       { title: 'Under the Skin (原创)', desc: '通过富有打击节奏感的吉他与高亢的歌声，探寻内心最真实的本色。' },
-      { title: 'Madison Skies (翻唱)', desc: '致敬 Madison Cunningham，将爵士民谣和弦与世界音乐节奏完美融合。' }
+      { title: 'Madison Skies (翻唱)', desc: '致敬 Madison Cunningham，将学术民谣和弦与世界音乐节奏完美融合。' }
     ],
     posterTitle: 'Katerina 个人海报'
   },
@@ -67,6 +67,9 @@ export const artists: Artist[] = [
     genre: 'BBC 推荐的酷儿独立流行 (Queer Indie Pop) 与暗黑民谣 (Dark Folk)',
     bio: 'RUNA 是一位极具魅力的艺术家，她从意大利南部小镇走到充满活力的 Leeds 街头，这段旅程将她塑造成了独立音乐界一股不可忽视的力量。BBC Introducing Leeds 贴切地形容她的乐音“令人陶醉而难以忘怀”，完美诠释了她将原始情感注入每个音符的独特能力。她的歌词灵感来源于丰富的个人经历与文化传承。作为一名酷儿女性，RUNA 在每首歌里倾注了关于身份认同、爱和憧憬的复杂心路。她的歌声承载着意大利南部根基的厚重感——深植于异教传统，并充满历史与情感。这种过去与现在的融合创造出一种既超越时代又极度亲密的乐音，打动着每一个曾感到被边缘化或在传统与自我表达间寻找平衡的人。',
     quoteSelection: '“我的酷儿身份与意大利文化根源在舞台上碰撞，以此放大那些常常被忽视和沉默的声音。”',
+    members: [
+      { name: 'RUNA (Rossella Scotti)', role: '主唱 / 节奏吉他', bio: '南意背景的酷儿唱作人，BBC推荐。她倾注其关于身份认同、爱、对少数及移民人群憧憬的心路历程。', avatar: '/poster_runa.jpg' }
+    ],
     setlist: [
       { title: 'Mesmerised (原创)', desc: '一首令人着迷的替代民谣，带有暗黑合成器织体和铿锵鼓点节奏。' },
       { title: 'Pagan Ground (原创)', desc: '将古典南意圣歌与充满力量感的现代独立摇滚吉他深度融合。' },
@@ -136,7 +139,7 @@ export const timelineEvents: TimelineEvent[] = [
       englishTitle: 'Visual Direction Alignment with Designer Xinyi Li',
       sender: 'Man Luo & 设计师',
       details: `Designer: "Please take a look at the retro concept. Because I think bright neon pinks and retro elements will definitely steal the show!"\nMan Luo: "This should be the main poster! But it doesn't feel that impressive right away with classical instruments."\nMan Luo: "Then, regarding the instruments on this poster, we are doing a live music gig. Clarinet and violin are classical instruments, which are not quite suitable."\nMan Luo: "You can put guitars and basses in it."\nDesigner: "OK, got it! Will update to band gear."`,
-      translation: `设计师："看看这个复古粉色。我觉得明亮的复古霓虹粉极具冲击力。"\n罗曼："主题很好，但海报上的乐器是单簧管和小提琴，这是古典乐器，不适合摇滚Indie现场。"\n罗曼："可以改成吉他和贝斯。"\n设计师："OK！换成吉他贝斯摇滚配置。"`
+      translation: `设计师："看看这个复古粉色。我觉得明亮的复古霓虹粉极具冲击力。"\n罗曼："主题很好，但海报上的乐器是单簧管和小提琴，这是古典乐器，不适合摇滚Indie现场。"\n罗曼："可以改成吉力和贝斯。"\n设计师："OK！换成吉他贝斯摇滚配置。"`
     }
   },
   {
@@ -145,7 +148,7 @@ export const timelineEvents: TimelineEvent[] = [
     title: '社媒渠道上线与艺人招募公告',
     category: 'marketing',
     description: '在 Instagram、TikTok 和小红书正式上线 `@sheroesinharmony`。发布了首张双语公开招募海报，招募女性歌手、小众乐队以及支持女性力量的品牌方。',
-    notes: '招募重点面向 Leeds 学生群体和当地独立艺术家网络，收到了非常多热情的回应。',
+    notes: '招募重点面向 Leeds 学生群体 and 当地独立艺术家网络，收到了非常多热情的回应。',
     artifact: {
       type: 'moments',
       title: '社交媒体公开招募艺人与赞助商',
@@ -331,7 +334,7 @@ export const sponsors: Sponsor[] = [
     logoText: 'MS',
     logoBg: 'bg-emerald-950 border-emerald-500 text-emerald-400',
     contribution: '提供约 500 元资金赞助 + 赞助多箱 MOLLIS 有机竹纤维柔密夜用与日用卫生用品。',
-    alignedValue: '女性生殖及心理健康自我接纳 (用舒适轻薄呵护每个真实的女性生理周期，回归身心愉悦)。',
+    alignedValue: '女性生殖及心理健康自我接纳 (用舒适轻薄呵护每个真实的女性生理周期，回归身心愉周期)。',
     description: '浙江珍琦护理用品有限公司旗下品牌 MOLLIS，提倡自然轻柔力量与身心健康。'
   },
   {
@@ -380,7 +383,7 @@ export const reflections: ReflectionItem[] = [
     title: '商务端破壁：重组价值观双向咬合的“定向匹配”以代替“海投”',
     theory: '资金众筹拓展学：慈善品牌价值观联合矩阵理论 (Sargeant & Shang)',
     problem: '在商务拓展的第一个月，我们误入了纯海投盲区的怪圈。在未深入调研跨国巨头财年及地方 UK 预算分布的前提下，泛泛地向 SHEIN、喜茶、海南航空、饭团外卖投递了普通合作书，招致了接近九成九的拒信，极大地折损了队内的执行士气。',
-    impact: '白白空耗了接近18个小时的公关办公时间，撰写的合作案完全没有考虑地理和目标圈层的高度重叠互补率。',
+    impact: '白白空耗了接近18个小时 of 公关办公时间，撰写的合作案完全没有考虑地理和目标圈层的高度重叠互补率。',
     resolution: '我们痛定思痛，转攻主打小而美和核心态度一致的垂类品牌：浙江珍琦旗下品牌 MOLLIS 高度契合女性卫生特护与安全主题，一盒手作深度绑定本校留学生画像，而 Lush 则自带反实验和扶持 Leeds 社区底色。',
     learning: '学会通过由海报及包装露出置换的定向定制案，一击斩获4家具有极高度互补力量的品牌巨擘的联合承载。'
   },

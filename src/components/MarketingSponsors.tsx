@@ -21,7 +21,7 @@ export default function MarketingSponsors() {
     {
       phase: '阶段二：宣发攻坚（倒计时狂热）',
       date: '2025年2月 – 2025年5月',
-      focus: '在三八妇女节大促节点发布走心艺人生平专访短视频，官宣 Hyde Park Book Club 演出舞台，解锁 Lush 和一盒手作甜品伴手礼赞助。',
+      focus: '在三八妇女节大促节点发布走心艺人简介专访短视频，官宣 Hyde Park Book Club 演出舞台，解锁 Lush 和一盒手作甜品伴手礼赞助。',
       outcome: '在微信及 WhatsApp 私域宣发后的 72 小时内，全数售罄了首批 38 张限量早鸟票（票价 £7.00）。'
     },
     {

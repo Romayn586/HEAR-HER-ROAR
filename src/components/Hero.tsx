@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Play, ArrowDownRight, Volume2, Calendar, MapPin, Sparkles } from 'lucide-react';
+import GroupPhotos from './GroupPhotos';
 
 interface HeroProps {
   onNavigateToSection: (sectionId: string) => void;
@@ -151,6 +152,11 @@ export default function Hero({ onNavigateToSection }: HeroProps) {
             <span>2025届硕士毕业音乐会案例</span>
           </div>
         </div>
+      </div>
+
+      {/* Group Photos Showcase (Cast, Crew, and Organizers) */}
+      <div className="pb-16 relative z-10">
+        <GroupPhotos />
       </div>
 
       {/* Decorative Slide Ticker */}

@@ -7,7 +7,7 @@ export interface Artist {
   bio: string;
   quoteSelection: string;
   setlist: { title: string; desc: string }[];
-  members?: { name: string; role: string; bio: string }[];
+  members?: { name: string; role: string; bio: string; avatar?: string }[];
   posterTitle: string;
 }
 
